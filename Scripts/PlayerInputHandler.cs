@@ -5,7 +5,9 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerControls _playerControls;
     private ChargeToTarget _chargeToTarget;
-    private WirlWind _wirlWind;
+    private WhirlWind _whirlWind;
+    private BladeStorm _bladeStorm;
+    private Rampage _rampage;
 
     private void Awake()
     {
@@ -15,9 +17,16 @@ public class PlayerInputHandler : MonoBehaviour
     void Start()
     {
         _chargeToTarget = FindObjectOfType<ChargeToTarget>();
-        _wirlWind = FindObjectOfType<WirlWind>();
+        _whirlWind = FindObjectOfType<WhirlWind>();
+        _bladeStorm = FindObjectOfType<BladeStorm>();
+        _rampage = FindObjectOfType<Rampage>();
+        
+        
         _playerControls.Player.Dash.performed += ctx => OnDash();
-        _playerControls.Player.Wirlwind.performed += ctx => WirlWind();
+        _playerControls.Player.Wirlwind.performed += ctx => WhirlWind();
+        _playerControls.Player.BladeStorm.performed += ctx => BladeStorm();
+        _playerControls.Player.Rampage.performed += ctx => Rampage();
+        
     }
 
     private void OnEnable()
@@ -35,9 +44,18 @@ public class PlayerInputHandler : MonoBehaviour
         _chargeToTarget.Charge();
     }
 
-    void WirlWind()
+    void WhirlWind()
     {
-        Debug.Log("E");
-        _wirlWind.DoWirlWind();
+        _whirlWind.DoWhirlWind();
+    }
+
+    void BladeStorm()
+    {
+        _bladeStorm.DoBladeStorm();
+    }
+
+    void Rampage()
+    {
+        _rampage.DoRampage();
     }
 }

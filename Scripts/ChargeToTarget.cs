@@ -32,9 +32,9 @@ public class ChargeToTarget : MonoBehaviour
              yield return null;
          }
      }
-     private void OnCollisionEnter(Collision collision)
+     private void OnTriggerEnter(Collider other)
      {
-         if (isDashing && collision.gameObject.CompareTag("Dummy"))
+         if (isDashing && other.gameObject.CompareTag("Dummy"))
          {
              isDashing = false;
          }

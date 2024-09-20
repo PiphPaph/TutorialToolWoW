@@ -44,6 +44,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BladeStorm"",
+                    ""type"": ""Button"",
+                    ""id"": ""7fe1ae38-91f5-460d-a77c-aa39523283a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rampage"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7f31111-5439-4b10-b453-87c62b063ee0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +86,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Wirlwind"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e718e023-a770-4a7f-873b-882cee19521a"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BladeStorm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ea97aae-b9d3-45a2-97d1-f2559aeda691"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rampage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +118,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Wirlwind = m_Player.FindAction("Wirlwind", throwIfNotFound: true);
+        m_Player_BladeStorm = m_Player.FindAction("BladeStorm", throwIfNotFound: true);
+        m_Player_Rampage = m_Player.FindAction("Rampage", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +183,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Wirlwind;
+    private readonly InputAction m_Player_BladeStorm;
+    private readonly InputAction m_Player_Rampage;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Wirlwind => m_Wrapper.m_Player_Wirlwind;
+        public InputAction @BladeStorm => m_Wrapper.m_Player_BladeStorm;
+        public InputAction @Rampage => m_Wrapper.m_Player_Rampage;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +208,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Wirlwind.started += instance.OnWirlwind;
             @Wirlwind.performed += instance.OnWirlwind;
             @Wirlwind.canceled += instance.OnWirlwind;
+            @BladeStorm.started += instance.OnBladeStorm;
+            @BladeStorm.performed += instance.OnBladeStorm;
+            @BladeStorm.canceled += instance.OnBladeStorm;
+            @Rampage.started += instance.OnRampage;
+            @Rampage.performed += instance.OnRampage;
+            @Rampage.canceled += instance.OnRampage;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -172,6 +224,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Wirlwind.started -= instance.OnWirlwind;
             @Wirlwind.performed -= instance.OnWirlwind;
             @Wirlwind.canceled -= instance.OnWirlwind;
+            @BladeStorm.started -= instance.OnBladeStorm;
+            @BladeStorm.performed -= instance.OnBladeStorm;
+            @BladeStorm.canceled -= instance.OnBladeStorm;
+            @Rampage.started -= instance.OnRampage;
+            @Rampage.performed -= instance.OnRampage;
+            @Rampage.canceled -= instance.OnRampage;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -193,5 +251,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnDash(InputAction.CallbackContext context);
         void OnWirlwind(InputAction.CallbackContext context);
+        void OnBladeStorm(InputAction.CallbackContext context);
+        void OnRampage(InputAction.CallbackContext context);
     }
 }
