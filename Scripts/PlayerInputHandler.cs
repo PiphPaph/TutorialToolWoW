@@ -23,7 +23,7 @@ public class PlayerInputHandler : MonoBehaviour
         
         
         _playerControls.Player.Dash.performed += ctx => OnDash();
-        _playerControls.Player.Wirlwind.performed += ctx => WhirlWind();
+        _playerControls.Player.Whirlwind.performed += ctx => WhirlWind();
         _playerControls.Player.BladeStorm.performed += ctx => BladeStorm();
         _playerControls.Player.Rampage.performed += ctx => Rampage();
         

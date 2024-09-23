@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Wirlwind",
+                    "name": "Whirlwind",
                     "type": "Button",
                     "id": "6b49516f-33ba-4ee0-8e27-217a6c207f88",
                     "expectedControlType": "Button",
@@ -61,7 +61,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Wirlwind",
+                    "action": "Whirlwind",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

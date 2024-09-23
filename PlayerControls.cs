@@ -37,7 +37,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Wirlwind"",
+                    ""name"": ""Whirlwind"",
                     ""type"": ""Button"",
                     ""id"": ""6b49516f-33ba-4ee0-8e27-217a6c207f88"",
                     ""expectedControlType"": ""Button"",
@@ -83,7 +83,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Wirlwind"",
+                    ""action"": ""Whirlwind"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -117,7 +117,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Wirlwind = m_Player.FindAction("Wirlwind", throwIfNotFound: true);
+        m_Player_Whirlwind = m_Player.FindAction("Whirlwind", throwIfNotFound: true);
         m_Player_BladeStorm = m_Player.FindAction("BladeStorm", throwIfNotFound: true);
         m_Player_Rampage = m_Player.FindAction("Rampage", throwIfNotFound: true);
     }
@@ -182,7 +182,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Wirlwind;
+    private readonly InputAction m_Player_Whirlwind;
     private readonly InputAction m_Player_BladeStorm;
     private readonly InputAction m_Player_Rampage;
     public struct PlayerActions
@@ -190,7 +190,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Wirlwind => m_Wrapper.m_Player_Wirlwind;
+        public InputAction @Whirlwind => m_Wrapper.m_Player_Whirlwind;
         public InputAction @BladeStorm => m_Wrapper.m_Player_BladeStorm;
         public InputAction @Rampage => m_Wrapper.m_Player_Rampage;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -205,9 +205,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Wirlwind.started += instance.OnWirlwind;
-            @Wirlwind.performed += instance.OnWirlwind;
-            @Wirlwind.canceled += instance.OnWirlwind;
+            @Whirlwind.started += instance.OnWhirlwind;
+            @Whirlwind.performed += instance.OnWhirlwind;
+            @Whirlwind.canceled += instance.OnWhirlwind;
             @BladeStorm.started += instance.OnBladeStorm;
             @BladeStorm.performed += instance.OnBladeStorm;
             @BladeStorm.canceled += instance.OnBladeStorm;
@@ -221,9 +221,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Wirlwind.started -= instance.OnWirlwind;
-            @Wirlwind.performed -= instance.OnWirlwind;
-            @Wirlwind.canceled -= instance.OnWirlwind;
+            @Whirlwind.started -= instance.OnWhirlwind;
+            @Whirlwind.performed -= instance.OnWhirlwind;
+            @Whirlwind.canceled -= instance.OnWhirlwind;
             @BladeStorm.started -= instance.OnBladeStorm;
             @BladeStorm.performed -= instance.OnBladeStorm;
             @BladeStorm.canceled -= instance.OnBladeStorm;
@@ -250,7 +250,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnDash(InputAction.CallbackContext context);
-        void OnWirlwind(InputAction.CallbackContext context);
+        void OnWhirlwind(InputAction.CallbackContext context);
         void OnBladeStorm(InputAction.CallbackContext context);
         void OnRampage(InputAction.CallbackContext context);
     }
